@@ -1,6 +1,8 @@
 package org.example.top150interviews;
 
 public class RemoveElement {
+
+    //We have to remove numbers equals to a certain value called "val"
     public int removeElement(int[] nums, int val){
         int k = 0;
 
