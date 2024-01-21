@@ -21,20 +21,32 @@ public class HouseRobber {
 //    without alerting the police.
 
     public int rob(int[] nums) {
-        int sum = 0;
+        int n = nums.length;
 
-        for (int i = 0; i < nums.length; i += 2){
-            sum += nums[i];
+        if (n == 0) {
+            return 0;
+        } else if (n == 1) {
+            return nums[0];
+        } else if (n == 2) {
+            return Math.max(nums[0], nums[1]);
         }
-        return sum;
+
+        int[] dp = new int[n];
+        dp[0] = nums[0];
+        dp[1] = Math.max(nums[0], nums[1]);
+
+        for (int i = 2; i < n; i ++) {
+            dp[i] = Math.max(dp[i-1], dp[i-2] + nums[i]);
+        }
+        return dp[n-1];
     }
 
     public static void main(String[] args) {
         HouseRobber houseRobber = new HouseRobber();
 
-        int[] money = {2,5,6,3,4,8,6,5,2,3,8,9};
+        int[] nums = {2,5,6,3,4,8,6,5,2,3,8,9};
 
-        int maxMoney = houseRobber.rob(money);
+        int maxMoney = houseRobber.rob(nums);
 
         System.out.println("The maximum amount of money he can rob is:  " + maxMoney);
 
